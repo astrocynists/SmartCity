@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart City Transformations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+      
+    }
+    .logo {
+    height: 80px;
+    cursor: pointer;
+
+  }
+
+
+    header {
+      background-color: black;
+      color: white;
+      padding: 30px 40px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      display: flex;
+      gap: 400px;
+    }
+    nav{
+    color: white;
+    background-color:#2D2D2D;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 80px;
+    padding: 25px;
+    top: 15vh;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: 2px solid underline;
+}
+.a{
+  color: white;
+}
+.module{
+  outline: none;
+  border: none;
+  background-color: #2D2D2D;
+  color: white;
+  padding: 8px;
+  width: 150px;
+  text-decoration: 2px solid underline;
+  font-size: 23px;
+  transition: 0.3s ease;
+  font-family: "Montserrat", sans-serif;
+}
+
+    .redirect-button {
+      background-color: #2563eb; /* blue-600 */
+      color: white;
+      padding: 0.5rem 1.5rem; /* py-2 px-6 */
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      font-size: 1rem;
+      margin-left: 43%;
+      margin-top: 15px;
+    }
+
+    .redirect-button:hover {
+      background-color: #1d4ed8; /* blue-700 */
+    }
+ 
+
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    .container {
+      padding: 40px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    .city-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .city-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .city-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .city-content {
+      padding: 20px;
+    }
+
+    .city-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #0056d2;
+    }
+
+    .city-desc {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 20px;
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+     <a href="#" onclick="refreshPage(event)">
+      <img src="images/logo.jpg" alt="Smart City Logo" class="logo">
+    </a>
+    <h1>City Transformations</h1>
+    <p>Explore how top global cities adopted smart solutions</p>
+  </header>
+
+  <nav>
+    <a href="http://127.0.0.1:5500/Smart%20City%20Project/index.html" class="a">Home</a>
+    <form action="">
+        <select name="Modules" class="module" id="" onchange="this.form.action=this.value; this.form.submit();">
+            <option value="">Modules</option>
+            <option value="" disabled></option>
+            <option value="http://127.0.0.1:5500/Smart%20City%20Project/news.html" class="a">News and Informations</option>
+            <option value="http://127.0.0.1:5500/Smart%20City%20Project/public.html" class="a">Public Facilities</option>
+            <option value="http://127.0.0.1:5500/Smart%20City%20Project/navigation.html" class="a">Navigation Status</option>
+            <option value="http://127.0.0.1:5500/Smart%20City%20Project/suggestion.html" class="a">Suggestion Form</option>
+        </select>
+    </form>
+    <a href="#contact" class="a">Get to Us</a>
+    <a href="http://127.0.0.1:5500/Smart%20City%20Project/about.html" class="a">About Us</a>
+</nav>
+
+  <button class="redirect-button" onclick="window.location.href='http://127.0.0.1:5500/Smart%20City%20Project/suggestform.html'">
+    Drop Your Suggestion Here
+  </button>
+
+
+  <div class="container">
+    <div class="city-card">
+      <img src="https://th.bing.com/th/id/OIP.su0jjT3GokzQfM1DRZpJWwHaEQ?rs=1&pid=ImgDetMain" class="city-img" alt="Singapore">
+      <div class="city-content">
+        <div class="city-title">Singapore</div>
+        <div class="city-desc">
+          A global leader in smart governance, autonomous transport, and AI-driven infrastructure management.
+        </div>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <img src="data:image/jpeg;base64,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" class="city-img" alt="Barcelona">
+      <div class="city-content">
+        <div class="city-title">Barcelona</div>
+        <div class="city-desc">
+          Uses smart lighting, Wi-Fi, and digital citizen portals for improved urban life and efficiency.
+        </div>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <img src="https://th.bing.com/th/id/OIP.19ASsCReb9aeqbs0Mwge8AHaE8?w=280&h=187&c=7&r=0&o=5&dpr=1.3&pid=1.7" class="city-img" alt="Dubai">
+      <div class="city-content">
+        <div class="city-title">Dubai</div>
+        <div class="city-desc">
+          Smart policing, AI surveillance, and paperless government make Dubai a tech-forward city.
+        </div>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <img src="https://th.bing.com/th/id/OIP.pM-Se315KrQWr7Cq7CrOmAHaE7?w=268&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" class="city-img" alt="New York">
+      <div class="city-content">
+        <div class="city-title">New York City</div>
+        <div class="city-desc">
+          Open data platforms, LinkNYC kiosks, and sensor-based traffic lights drive NYC's smart ecosystem.
+        </div>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <img src="https://th.bing.com/th/id/OIP.BHBK_MSgrc392eBqQ4VuYQHaEK?w=305&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" class="city-img" alt="Amsterdam">
+      <div class="city-content">
+        <div class="city-title">Amsterdam</div>
+        <div class="city-desc">
+          A pioneer in sustainability and smart mobility with open innovation platforms for residents.
+        </div>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <img src="https://th.bing.com/th/id/OIP.ezbU7Vyn9UstVjwV6oerEAHaFj?w=218&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" class="city-img" alt="Tokyo">
+      <div class="city-content">
+        <div class="city-title">Tokyo</div>
+        <div class="city-desc">
+          Integrates robotics, smart transport, and disaster alert systems for urban safety and efficiency.
+        </div>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <img src="https://th.bing.com/th/id/OIP.AMUX0i56q98KihDirM8mxwHaE8?w=250&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" class="city-img" alt="Seoul">
+      <div class="city-content">
+        <div class="city-title">Seoul</div>
+        <div class="city-desc">
+          Offers IoT-powered homes, 5G networks, and Smart Seoul mobile services for public engagement.
+        </div>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <img src="https://th.bing.com/th/id/OIP.r_d7kwG-jii5rxWtDqy34gHaDt?w=335&h=175&c=7&r=0&o=5&dpr=1.3&pid=1.7" class="city-img" alt="London">
+      <div class="city-content">
+        <div class="city-title">London</div>
+        <div class="city-desc">
+          Combines smart grid tech, intelligent traffic systems, and open data for urban growth.
+        </div>
+      </div>
+    </div>
+
+    <div class="city-card">
+      <img src="https://th.bing.com/th/id/OIP.Aw8A_1rFA7XBh2RMOpFzpgHaFj?w=245&h=184&c=7&r=0&o=5&dpr=1.3&pid=1.7" class="city-img" alt="Bangalore">
+      <div class="city-content">
+        <div class="city-title">Bangalore</div>
+        <div class="city-desc">
+          Implements smart mobility, digital governance, and IoT-based water/electricity tracking solutions.
+        </div>
+      </div>
+      
+    </div>
+
+</body>
+</html>

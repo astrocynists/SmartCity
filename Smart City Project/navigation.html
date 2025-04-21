@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart-City Management</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Leaflet CSS and JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Merriweather&family=Montserrat&family=Nosifer&family=Open+Sans&family=Parkinsans&family=Playfair+Display&family=Raleway&family=Roboto+Condensed&family=Varela&family=Varela+Round&family=Work+Sans&display=swap" rel="stylesheet"/>
+
+  <!-- Custom Styles -->
+  <style>
+    #map {
+      height: 400px;
+      width: 100%;
+      border-radius: 1rem;
+      z-index: 0;
+      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    }
+
+    body {
+      padding-top: 160px; /* header (80px) + nav (80px) */
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 40px;
+      align-items: center;
+      position: fixed;
+      z-index: 1000;
+      width: 100%;
+      top: 0;
+    }
+
+    nav {
+      color: white;
+      background-color: #2D2D2D;
+      position: fixed;
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: baseline;
+      gap: 80px;
+      padding: 21px;
+      top: 80px; /* below header */
+      z-index: 999;
+    }
+
+    nav select {
+      font-family: inherit;
+      font-size: 1rem;
+      border: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 50px;
+    }
+    .module{
+    outline: none;
+    border: none;
+    background-color: #2D2D2D;
+    color: white;
+    padding: 8px;
+    width: 150px;
+    text-decoration: 2px solid underline;
+    font-size: 23px;
+    transition: 0.3s ease;
+    font-family: "Montserrat", sans-serif;
+}
+a{
+    text-decoration: none;
+    font-size: 24px;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: 2px solid underline;
+}
+a:hover{
+    transition: 0.2s ease;
+    transform: scale(1.02); 
+}
+h1{
+    color: white;
+    font-size: 50px;
+}
+.signin{
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    text-decoration: 2px solid underline;
+}
+.signin:hover{
+    transition: 0.2s ease;
+    transform: scale(1.02);
+    cursor: pointer;
+}
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Header -->
+  <header>
+    <div>
+      <img src="images/logo.jpg" alt="Smart-City" width="60" height="60">
+    </div>
+    <div>
+      <h1 style="font-size: 40px;">Navigation</h1>
+    </div>
+    <div>
+      <h3 class="signin">Sign-In / Log-In</h3>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="http://127.0.0.1:5500/Smart%20City%20Project/index.html">Home</a>
+    <form action="">
+        <select name="Modules" class="module" id="" onchange="this.form.action=this.value; this.form.submit();">
+            <option value="">Modules</option>
+            <option value="" disabled></option>
+            <option value="http://127.0.0.1:5500/Smart%20City%20Project/news.html">News and Informations</option>
+            <option value="http://127.0.0.1:5500/Smart%20City%20Project/public.html">Public Facilities</option>
+            <option value="http://127.0.0.1:5500/Smart%20City%20Project/navigation.html">Navigation Status</option>
+            <option value="http://127.0.0.1:5500/Smart%20City%20Project/suggestion.html">Suggestion Form</option>
+        </select>
+    </form>
+    <a href="#contact">Get to Us</a>
+    <a href="http://127.0.0.1:5500/Smart%20City%20Project/about.html">About Us</a>
+</nav>
+
+  <!-- Navigation Section -->
+  <section class="text-center my-8">
+    <h1 class="text-3xl font-bold text-blue-700">🧭 Navigation Status</h1>
+    <p class="text-gray-600 mt-2">Find essential places in your smart city</p>
+  </section>
+
+  <!-- Map -->
+  <section class="max-w-6xl mx-auto px-4">
+    <div id="map"></div>
+  </section>
+
+  <!-- Nearby Locations -->
+  <section class="max-w-6xl mx-auto px-4 my-12">
+    <h2 class="text-2xl font-semibold mb-6 text-gray-800">Nearby Locations</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6" style="cursor: pointer;">
+      <!-- Location Cards -->
+      <div class="bg-green-100 text-green-900 p-4 rounded-xl shadow hover:shadow-lg transition">
+        <img src="https://imgs.search.brave.com/ys9IvbPnBGR71qIbJmbQxgTQFUz0_BypB3buJVFewlw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2FmZXR5c2lnbi5j/b20vaW1hZ2VzL3Nv/dXJjZS9wYWdlLWxp/c3QtcGFnZXMvcHJv/ZHVjdGdyaWQteG4t/dC9GNjkzMy5wbmc" alt="Park" class="mb-2">
+        <h3 class="font-bold text-lg">Park</h3>
+        <p class="text-sm">Relax and enjoy nature</p>
+      </div>
+
+      <div class="bg-red-100 text-red-900 p-4 rounded-xl shadow hover:shadow-lg transition">
+        <img src="https://imgs.search.brave.com/Ib0ahTMOkU48gz-CX8QspEeB82k5MSno3KIAuxMmiPY/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9tZWRpY2FsLXNl/cnZpY2UtbG9nby1w/aG90b18xMTk3MTAw/LTkzMi5qcGc_c2Vt/dD1haXNfaHlicmlk" alt="Hospital" class="mb-2">
+        <h3 class="font-bold text-lg">Hospital</h3>
+        <p class="text-sm">Emergency and healthcare</p>
+      </div>
+
+      <div class="bg-yellow-100 text-yellow-900 p-4 rounded-xl shadow hover:shadow-lg transition">
+        <img src="https://imgs.search.brave.com/K230AQef2cF3eduJ52sHpTLZ3Q0FTFXrBtpt0FmeTk4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9pLmV0/c3lzdGF0aWMuY29t/LzEyMjI0NTA2L3Iv/aWwvZDAzZDgwLzIw/OTg5OTI2OTcvaWxf/NjAweDYwMC4yMDk4/OTkyNjk3Xzd0ajYu/anBn" alt="Public Toilet" class="mb-2">
+        <h3 class="font-bold text-lg">Public Toilet</h3>
+        <p class="text-sm">Accessible restrooms</p>
+      </div>
+
+      <div class="bg-purple-100 text-purple-900 p-4 rounded-xl shadow hover:shadow-lg transition">
+        <img src="https://imgs.search.brave.com/Txb9ZcCNqj8iBYzwQvaI23T9xYsaFitY-qvMJzwedtk/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWRzLnR1cmJvbG9n/by5jb20vdXBsb2Fk/cy9kZXNpZ24vcHJl/dmlld19pbWFnZS82/ODQ2MTMyMC9wcmV2/aWV3X2ltYWdlMjAy/NDExMzAtMS0xOTEz/djcwLnBuZw" alt="Supermarket" class="mb-2">
+        <h3 class="font-bold text-lg">Supermarket</h3>
+        <p class="text-sm">Daily essentials</p>
+      </div>
+
+      <div class="bg-blue-100 text-blue-900 p-4 rounded-xl shadow hover:shadow-lg transition">
+        <img src="https://imgs.search.brave.com/enoZ1Ui-ZKEXVI4jl_8LWL76uAWLXZZDQ-gpA_NHFQU/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzM3Lzc2LzAw/LzM2MF9GXzEzNzc2/MDAxN18xb0pLcmpD/RzNJSGpnYmdDcEtw/RGFrMzlVSnRoYm5G/VC5qcGc" alt="Bus Station" class="mb-2">
+        <h3 class="font-bold text-lg">Bus Station</h3>
+        <p class="text-sm">Local transport access</p>
+      </div>
+
+      <div class="bg-gray-200 text-gray-900 p-4 rounded-xl shadow hover:shadow-lg transition">
+        <img src="https://imgs.search.brave.com/LBBo22KAXhAGCdLQc1m47WSfZq-B1cvC56TwAxcAkN4/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA1LzM2LzIyLzQw/LzM2MF9GXzUzNjIy/NDAyNV9WWkJnbFAx/czMzc1dBYmF3OEVi/ZXF2TzVRTE5OTmVk/eC5qcGc" alt="Railway Station" class="mb-2">
+        <h3 class="font-bold text-lg">Railway Station</h3>
+        <p class="text-sm">Intercity connections</p>
+      </div>
+
+      <div class="bg-pink-100 text-pink-900 p-4 rounded-xl shadow hover:shadow-lg transition">
+        <img src="https://imgs.search.brave.com/gAbePmjAXSnfinqrRfBBZ5DCV9e2VbOxDwhIyKwEL4g/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzEyLzk3LzY5LzEy/LzM2MF9GXzEyOTc2/OTEyOTVfYThWdURO/bW4yM21SeG9pYW03/MlVjUEFZWE5qZ1Mw/NzEuanBn" alt="Hotel" class="mb-2">
+        <h3 class="font-bold text-lg">Hotels</h3>
+        <p class="text-sm">Stay & comfort</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Smart City Management. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Leaflet Map Script -->
+  <script>
+    const map = L.map('map').setView([28.6139, 77.2090], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([28.6139, 77.2090]).addTo(map)
+      .bindPopup('You are here - Smart City Center')
+      .openPopup();
+  </script>
+</body>
+</html>

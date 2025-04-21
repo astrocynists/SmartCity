@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Smart City Facilities & Emergency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 3rem;
+            background: black;
+            color: white;
+        }
+
+        .header img {
+            height: 60px;
+            border-radius: 10px;
+        }
+
+        .header-content {
+            flex-grow: 1;
+            text-align: center;
+            margin-right: 60px;
+        }
+
+        .header-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .header-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .navbar {
+            background-color: #2D2D2D;
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding: 20px;
+            z-index: 999;
+        }
+
+        .navbar a, .navbar select {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            background: transparent;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .navbar select {
+            padding: 5px;
+            background-color: #444;
+            color: white;
+            border-radius: 5px;
+            border: 1px solid #666;
+        }
+
+        .search-bar {
+            text-align: center;
+            margin: 2rem 0rem;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            border-radius: 5px;
+            border-color: #004d99;
+            width: 250px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            color: #0066cc;
+        }
+
+        .emergency {
+            background: rgba(255, 68, 68, 0.9);
+            color: white;
+        }
+
+        .emergency h3 {
+            color: white;
+        }
+
+        .btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #004d99;
+        }
+
+        .btn-emergency {
+            background: rgb(255, 0, 0);
+        }
+
+        .btn-emergency:hover {
+            background: #c80303;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="images/logo.jpg" alt="Smart City Logo">
+        <div class="header-content">
+            <h1>Smart City Public Facilities & Emergency</h1>
+            <p>AI-Powered Convenience, Accessibility, and Safety</p>
+        </div>
+    </div>
+    <nav class="navbar">
+        <a href="http://127.0.0.1:5500/Smart%20City%20Project/index.html">Home</a>
+        <form action="">
+            <select name="Modules" class="module" id="" onchange="this.form.action=this.value; this.form.submit();">
+                <option value="">Modules</option>
+                <option value="" disabled></option>
+                <option value="http://127.0.0.1:5500/Smart%20City%20Project/news.html">News and Informations</option>
+                <option value="http://127.0.0.1:5500/Smart%20City%20Project/public.html">Public Facilities</option>
+                <option value="http://127.0.0.1:5500/Smart%20City%20Project/navigation.html">Navigation Status</option>
+                <option value="http://127.0.0.1:5500/Smart%20City%20Project/suggestion.html">Suggestion Form</option>
+            </select>
+        </form>
+        <a href="#contact">Get to Us</a>
+        <a href="http://127.0.0.1:5500/Smart%20City%20Project/about.html">About Us</a>
+    </nav>
+
+    <!-- SEARCH BAR -->
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="Search Facility...">
+    </div>
+
+    <!-- CARDS CONTAINER -->
+    <div class="container" id="app">
+        <!-- Facility cards will be dynamically generated here -->
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>&copy; 2025 Smart City Management. All Rights Reserved.</p>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        const facilities = [
+            { title: "Taxi & E-Rickshaw", icon: "🚖", description: "Book the nearest taxi or e-rickshaw with real-time tracking.", buttonText: "Book Now", isEmergency: false },
+            { title: "Bike Sharing", icon: "🚲", description: "Rent a smart bike from nearby docking stations.", buttonText: "Find Bikes", isEmergency: false },
+            { title: "Wheelchair Assistance", icon: "♿", description: "Request mobility support for differently-abled individuals.", buttonText: "Request Help", isEmergency: false },
+            { title: "Smart Elevators", icon: "🛗", description: "Call elevators in public buildings via AI.", buttonText: "Call Elevator", isEmergency: false },
+            { title: "EV Charging Stations", icon: "🔌", description: "Locate and reserve EV charging points.", buttonText: "Find Stations", isEmergency: false },
+            { title: "Smart Parking", icon: "🅿", description: "Find and pre-book parking slots.", buttonText: "Locate Parking", isEmergency: false },
+            { title: "Emergency SOS", icon: "🆘", description: "One-tap connection to police, ambulance, or fire brigade.", buttonText: "Tap for Help", isEmergency: true },
+            { title: "Disaster Alerts", icon: "⚠", description: "Real-time flood/earthquake warnings and shelter navigation.", buttonText: "View Alerts", isEmergency: false },
+            { title: "Public Toilets", icon: "🚻", description: "Find hygienic public toilets nearby.", buttonText: "Search Now", isEmergency: false },
+            { title: "Smart Street Lighting", icon: "💡", description: "Adaptive street lighting based on movement and daylight.", buttonText: "Check Coverage", isEmergency: false },
+            { title: "Air Quality Monitoring", icon: "🌫", description: "View real-time air quality index and health tips.", buttonText: "Check AQI", isEmergency: false },
+            { title: "Smart Waste Management", icon: "🗑", description: "Locate smart bins and schedule garbage pickup.", buttonText: "Manage Waste", isEmergency: false },
+            { title: "Water ATM Locator", icon: "🚰", description: "Find safe drinking water ATMs around you.", buttonText: "Locate ATM", isEmergency: false },
+            { title: "Free Wi-Fi Zones", icon: "📶", description: "Connect to government-sponsored Wi-Fi hotspots.", buttonText: "Find Wi-Fi", isEmergency: false },
+            { title: "Lost & Found", icon: "🔎", description: "Report or search lost public property.", buttonText: "Report/Search", isEmergency: false },
+            { title: "Smart Bus Tracker", icon: "🚌", description: "Track public buses in real-time and view ETAs.", buttonText: "Track Now", isEmergency: false },
+            { title: "MOTO", icon: "🤝", description: "IF YOU SATISFY TELL OTHERS, IF YOU NOT TELL US", buttonText: "About us", isEmergency: false }
+        ];
+
+        const app = document.getElementById('app');
+        facilities.forEach(facility => {
+            const card = document.createElement('div');
+            card.className = `card${facility.isEmergency ? ' emergency' : ''}`;
+            card.innerHTML = `
+                <h3>${facility.icon} ${facility.title}</h3>
+                <p>${facility.description}</p>
+                <button class="btn ${facility.isEmergency ? 'btn-emergency' : ''}">${facility.buttonText}</button>
+            `;
+            app.appendChild(card);
+        });
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-emergency')) {
+                alert("🚨 EMERGENCY ALERT: Authorities notified! Your location has been shared.");
+                console.log("Emergency request sent to police/ambulance.");
+            }
+        });
+
+        document.getElementById('search').addEventListener('input', (e) => {
+            const value = e.target.value.toLowerCase();
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = card.textContent.toLowerCase().includes(value) ? '' : 'none';
+            });
+        });
+
+        function handleModuleSelect(selectElement) {
+            const value = selectElement.value;
+            if (value) alert(`Navigating to ${value}`);
+        }
+    </script>
+</body>
+</html>

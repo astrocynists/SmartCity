@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart-City Management</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nosifer&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Parkinsans:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Varela&family=Varela+Round&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body id="home">
+    <header>
+        <div>
+            <img value="#home" src="images/logo.jpg" alt="Smart-City">
+        </div>
+        <div>
+            <h1>Smart City</h1>
+        </div>
+        <div>
+            <h3 class="signin">Sign-In/Log-In</h3>
+        </div>
+    </header>
+    <nav>
+        <a href="http://127.0.0.1:5500/Smart%20City%20Project/index.html">Home</a>
+        <form action="">
+            <select name="Modules" class="module" id="" onchange="this.form.action=this.value; this.form.submit();">
+                <option value="">Modules</option>
+                <option value="" disabled></option>
+                <option value="http://127.0.0.1:5500/Smart%20City%20Project/news.html">News and Informations</option>
+                <option value="http://127.0.0.1:5500/Smart%20City%20Project/public.html">Public Facilities</option>
+                <option value="http://127.0.0.1:5500/Smart%20City%20Project/navigation.html">Navigation Status</option>
+                <option value="http://127.0.0.1:5500/Smart%20City%20Project/suggestion.html">Suggestion Form</option>
+            </select>
+        </form>
+        <a href="#contact">Get to Us</a>
+        <a href="http://127.0.0.1:5500/Smart%20City%20Project/about.html">About Us</a>
+    </nav>
+    <section class="moto">
+        <div>
+            <p>Connecting Citizens, Empowering Cities</p> <br>
+            <p>with</p> <br>
+            <p>Smarter Cities and Better Lives.</p>
+        </div>
+    </section>
+    <section class="videosec">
+        <div>
+            <b><h2>City Design Showcase</h2></b>
+            <p class="videosectext">Designing the Future: A Glimpse Into Smart City Planning</p>
+            <div class="videobox">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/7vlKoMi4Qr0?si=6HlQlZ-DJx5_7ldM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <h2 class="videosectext">Build the City of Tomorrow</h2>
+            <input type="button" class="videosecbutton" value="build now!">
+        </div>
+    </section> <hr>
+    <section class="boxes">
+        <h2 style="font-weight: bold; font-size: 60px;">City Dashboard</h2>
+        <p style="font-weight: bold; font-size: 30px; font-family: Montserrat, sans-serif;">Everything you desire!</p>
+        <div class="box">
+            <h3 class="boxhead">News and Informations</h3> <br><br><hr><br><br>
+            <p class="boxpara">The General Module serves as the central hub for all city-wide updates and essential announcements. From government notifications, emergency alerts, upcoming community events, to infrastructure development plans — everything is just a click away. <br><br>Stay informed and engaged with your city's progress. Whether you're a resident, visitor, or planner, this module ensures you're always in the loop with what matters most.</p>
+            <br><br>
+            <a href="http://127.0.0.1:5500/Smart%20City%20Project/news.html" style="color: black;">Click to stay informed!</a>
+        </div>
+        <div class="box">
+            <h3 class="boxhead">Public Facilities</h3> <br><br><hr><br><br>
+            <p class="boxpara">The Public Facilities Module gives you direct access to a map and directory of essential city services—including hospitals, schools, fire stations, police departments, libraries, and more. <br><br>Instantly check operational hours, locations, service availability, and even get directions. This module empowers citizens to connect with public infrastructure like never before, promoting accessibility and convenience.</p>
+            <br><br>
+            <a href="http://127.0.0.1:5500/Smart%20City%20Project/public.html" style="color: black;">Explore facilities!</a>
+        </div>
+        <div class="box">
+            <h3 class="boxhead">Navigation Status</h3> <br><br><hr><br><br>
+            <p class="boxpara">Move smarter, not harder. The Navigation Module is your personal guide through the city—offering live GPS tracking, optimized routes, public transportation schedules, and updates on traffic congestion or roadblocks.<br><br>Designed for both pedestrians and drivers, this module transforms the way you interact with the urban landscape. Reach destinations faster and explore your city with confidence.</p>
+            <br><br>
+            <a href="http://127.0.0.1:5500/Smart%20City%20Project/navigation.html" style="color: black;">Navigate through the city!</a>
+        </div>
+    </section> <hr> <br><br>
+    <section id="contact" class="contactus">
+        <h3 style="font-weight: bold; font-size: 39px; color: white;">Get to Us...</h3>
+        <div class="gettous">
+            <div class="leftside">
+                <b><p>
+                    Call Us : +91xxxxxxxxxx <br> <br>
+                    Email Us : citysmart@gmail.com <br> <br>
+                    Instagram : @build_citysmart <br> <br>
+                    Facebook : _smartcity <br><br>  
+                </p></b>
+            </div>
+            <div class="rightside">
+                <b><p>
+                    <h6><a href="" style="font-size: 20px; ">Privacy Policy</a></h6><br>
+                    <h6><a href="" style="font-size: 20px;">User Agreement</a></h6><br>
+                    <h6><a href="" style="font-size: 20px;">Cookie Policy</a></h6><br>
+                    <h6><a href="" style="font-size: 20px;">Copyright Policy</a></h6><br>
+                    <h6><a href="" style="font-size: 20px;">Terms and Conditions</a></h6>
+                </p></b>
+            </div>
+        </div>
+    </section><hr>  
+    <footer>
+        <p>&copy; 2025 Smart City Management. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
